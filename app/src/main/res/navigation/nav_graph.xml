@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/MainFragment">
+
+    <fragment
+        android:id="@+id/MainFragment"
+        android:name="com.urrr4545.weathertest.presentation.ui.MainFragment"
+        tools:layout="@layout/fragment_main">
+    </fragment>
+</navigation>
