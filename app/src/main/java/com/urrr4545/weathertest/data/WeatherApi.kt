@@ -5,7 +5,7 @@ import com.urrr4545.weathertest.data.response.DailyResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface WeahterApi {
+interface WeatherApi {
     @GET("forecast/daily")
     suspend fun getForecastDaily(
         @Query("q") cityName: String,

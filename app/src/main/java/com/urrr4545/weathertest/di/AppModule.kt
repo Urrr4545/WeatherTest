@@ -3,7 +3,10 @@ package com.urrr4545.weathertest.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.urrr4545.weathertest.Constants
-import com.urrr4545.weathertest.data.WeahterApi
+import com.urrr4545.weathertest.data.WeatherApi
+import com.urrr4545.weathertest.data.response.WeatherRepositoryImpl
+import com.urrr4545.weathertest.domain.mapper.DataMapper
+import com.urrr4545.weathertest.domain.repository.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,9 +63,22 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideWeatherApiService(retrofitBuilder: Retrofit.Builder): WeahterApi {
+    fun provideWeatherApiService(retrofitBuilder: Retrofit.Builder): WeatherApi {
         return retrofitBuilder
             .build()
-            .create(WeahterApi::class.java)
+            .create(WeatherApi::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideDataMapper(): DataMapper{
+        return DataMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideWeatherRepository(
+        api: WeatherApi,
+        dataMapper: DataMapper
+    ) = WeatherRepositoryImpl(api, dataMapper) as WeatherRepository
 }

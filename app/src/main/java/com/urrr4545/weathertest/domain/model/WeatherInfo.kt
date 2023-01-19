@@ -2,7 +2,6 @@ package com.urrr4545.weathertest.domain.model
 
 data class WeatherInfo(
     val city: String,
-    val dt: Long,
     val weathers: List<Weather>
 )
 
