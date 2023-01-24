@@ -7,6 +7,7 @@ import com.urrr4545.weathertest.data.WeatherApi
 import com.urrr4545.weathertest.data.response.WeatherRepositoryImpl
 import com.urrr4545.weathertest.domain.mapper.DataMapper
 import com.urrr4545.weathertest.domain.repository.WeatherRepository
+import com.urrr4545.weathertest.domain.usecase.GetWeatherUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,7 +72,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideDataMapper(): DataMapper{
+    fun provideDataMapper(): DataMapper {
         return DataMapper()
     }
 
@@ -81,4 +82,13 @@ object AppModule {
         api: WeatherApi,
         dataMapper: DataMapper
     ) = WeatherRepositoryImpl(api, dataMapper) as WeatherRepository
+
+    @Singleton
+    @Provides
+    fun provideGetWeatherUseCase(
+        weatherRepository: WeatherRepository,
+        dataMapper: DataMapper
+    ): GetWeatherUseCase {
+        return GetWeatherUseCase(weatherRepository, dataMapper)
+    }
 }
